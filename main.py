@@ -85,14 +85,24 @@ class SandwichMachine:
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
         if coins >= cost:
+            print("Sorry that's not enough money. Money refunded.\n")
             return True
         else:
             return False
-        # Cost in the interactable part will be process_coins()
+        # Coins in the interactable part will be process_coins()
 
 
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
+        bread_amount = sandwich_size.get("bread")
+        ham_amount = sandwich_size.get("ham")
+        cheese_amount = sandwich_size.get("cheese")
+        # Variables for the amount of each dictionary entry for the sandwich size
+
+        order_ingredients["bread"] -= bread_amount
+        order_ingredients["ham"] -= ham_amount
+        order_ingredients["cheese"] -= cheese_amount
+        # Deducting from ingredient amount
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
