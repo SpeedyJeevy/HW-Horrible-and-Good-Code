@@ -44,22 +44,16 @@ class SandwichMachine:
         self.machine_resources = machine_resources
 
     def check_resources(self, ingredients):
-        bread_required = ingredients.get("bread") # Bread Order Amount
-        ham_required = ingredients.get("ham") # Ham Order Amount
-        cheese_required = ingredients.get("cheese") # Cheese Order Amount
+        bread_required = ingredients["bread"] # Bread Order Amount
+        ham_required = ingredients["ham"] # Ham Order Amount
+        cheese_required = ingredients["cheese"] # Cheese Order Amount
 
         """Returns True when order can be made, False if ingredients are insufficient."""
-        if resources.get("bread") < bread_required:
-            print("Sorry there is not enough bread\n")
-            return False
-        if resources.get("ham") < ham_required:
-            print("Sorry there is not enough ham\n")
-            return False
-        if resources.get("cheese") < cheese_required:
-            print("Sorry there is not enough cheese\n")
-            return False
-
-        else: return True # Sufficient Materials
+        for item, amount_required in ingredients.items():
+            if self.machine_resources[item] < amount_required:
+                print("Sorry, there is not enough", item, ".")
+                return False
+        return True # Sufficient Materials
 
     def process_coins(self):
         """Returns the total calculated from coins inserted.
@@ -84,10 +78,13 @@ class SandwichMachine:
     def transaction_result(self, coins, cost):
         """Return True when the payment is accepted, or False if money is insufficient.
            Hint: use the output of process_coins() function for cost input"""
-        if coins >= cost:
-            print("Sorry that's not enough money. Money refunded.\n")
+        if coins > cost:
+            print("Here is $", coins - cost, "in change.\n")
+            return True
+        if coins == cost:
             return True
         else:
+            print("Sorry that's not enough money. Money refunded.\n")
             return False
         # Coins in the interactable part will be process_coins()
 
@@ -95,10 +92,13 @@ class SandwichMachine:
     def make_sandwich(self, sandwich_size, order_ingredients):
         """Deduct the required ingredients from the resources.
            Hint: no output"""
-        bread_amount = sandwich_size.get("bread")
-        ham_amount = sandwich_size.get("ham")
-        cheese_amount = sandwich_size.get("cheese")
+
+        bread_amount = sandwich_size["bread"]
+        ham_amount = sandwich_size["ham"]
+        cheese_amount = sandwich_size["cheese"]
         # Variables for the amount of each dictionary entry for the sandwich size
+
+        print("Enjoy your sandwich! Bon appetit!\n")
 
         order_ingredients["bread"] -= bread_amount
         order_ingredients["ham"] -= ham_amount
@@ -106,3 +106,52 @@ class SandwichMachine:
         # Deducting from ingredient amount
 
 ### Make an instance of SandwichMachine class and write the rest of the codes ###
+
+sandwich_machine = SandwichMachine(resources) # Pulls from resource dictionary.
+
+turn_off = False
+
+while not turn_off:
+    response = input("What would you like? (small/medium/large/off/report):\n")
+
+    if response == "report":
+        print("Bread: ", resources["bread"], "slice(s)\n")
+        print("Ham: ", resources["ham"], "slice(s)\n")
+        print("Cheese: ", resources["cheese"], "pound(s)\n")
+        # Report of the remaining ingredients.
+
+    if response == "off":
+        turn_off = True
+        break
+        # Ends loop.
+
+    if response == "small":
+        if sandwich_machine.check_resources(recipes["small"]["ingredients"]): # Should return True if ingredients exist
+            money = sandwich_machine.process_coins()
+            if sandwich_machine.transaction_result(money, recipes["small"]["cost"]):
+                # If it fits the cost, continue.
+                sandwich_machine.make_sandwich(recipes["small"]["ingredients"], resources)
+                # Make sandwich, deduct necessary items.
+        else:
+            continue # If not, get booted back to menu.
+
+    if response == "medium":
+        if sandwich_machine.check_resources(recipes["medium"]["ingredients"]):  # Should return True if ingredients exist
+            money = sandwich_machine.process_coins()
+            if sandwich_machine.transaction_result(money, recipes["medium"]["cost"]):
+                # If it fits the cost, continue.
+                sandwich_machine.make_sandwich(recipes["medium"]["ingredients"], resources)
+                # Make sandwich, deduct necessary items.
+        else:
+            continue  # If not, get booted back to menu.
+
+
+    if response == "large":
+        if sandwich_machine.check_resources(recipes["large"]["ingredients"]):  # Should return True if ingredients exist
+            money = sandwich_machine.process_coins()
+            if sandwich_machine.transaction_result(money, recipes["large"]["cost"]):
+                # If it fits the cost, continue.o
+                sandwich_machine.make_sandwich(recipes["large"]["ingredients"], resources)
+                # Make sandwich, deduct necessary items.
+        else:
+            continue  # If not, get booted back to menu.
