@@ -1,10 +1,13 @@
 class BankAccount:
     bank_name = "John Bank"
 
-    def __init__(self, customer_name, current_balance, minimum_balance):
+    def __init__(self, customer_name, current_balance, minimum_balance, account_number):
         self.customer_name = customer_name
         self.current_balance = current_balance
         self.minimum_balance = minimum_balance # Constructors
+
+        # Adding Protected member Account Number
+        self._account_number = account_number
 
 
     def deposit(self, amount): # You need to add self in the parameter every time.
