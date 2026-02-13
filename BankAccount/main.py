@@ -3,6 +3,7 @@ from CheckingAccount import CheckingAccount
 
 # Andy's instances
 person1 = SavingsAccount("Andy", 1000, 10, 0.05, 690, 123)
+person100 = SavingsAccount("Smith", 100, 10, 0.05, 790, 124)
 
 # Caiman's instance
 person2 = CheckingAccount("Caimen", 4000, 10, 420, 985)
@@ -17,3 +18,4 @@ print("----------------------------")
 
 # Testing SavingsAccount interest feature
 person1.add_interest()
+person100.add_interest()
