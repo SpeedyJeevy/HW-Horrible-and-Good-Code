@@ -26,21 +26,4 @@ class BankAccount:
 
         print("Customer Name: ", self.customer_name, "\nCurrent Balance: ", self.current_balance)
 
-guy = BankAccount("Guy", 420, 420)
-bro = BankAccount("Bro", 800, 800)
 
-guy.print_customer_information()
-
-print("\n////////////////////////////////////")
-
-bro.print_customer_information()
-print("\nTest subtracting some money:")
-bro.withdraw(900) # Expected: "You can't withdraw that much!"
-print("\n")
-bro.print_customer_information()
-
-print("\n////////////////////////////////////")
-print("\nTesting PROPER money subtraction:")
-bro.withdraw(100)
-print("\n")
-bro.print_customer_information() # Expected: 700
