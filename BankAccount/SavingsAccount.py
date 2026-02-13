@@ -1,5 +1,5 @@
 # Savings Account with interest - Andy Choo
-import BankAccount
+from BankAccount import BankAccount
 
 # Savings Account subclass with interest rate
 class SavingsAccount(BankAccount):
