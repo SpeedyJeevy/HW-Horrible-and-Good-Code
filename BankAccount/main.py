@@ -2,7 +2,7 @@ from SavingsAccount import SavingsAccount
 from CheckingAccount import CheckingAccount
 
 # Andy's instances
-person1 = SavingsAccount("Andy", 1000, 10, 0.05)
+person1 = SavingsAccount("Andy", 1000, 10, 0.05, 690, 123)
 
 # Caiman's instance
 person2 = CheckingAccount("Caimen", 4000, 10, 420, 985)
@@ -15,3 +15,5 @@ print("----------------------------")
 person2.transfer_with_limit(2300)
 print("----------------------------")
 
+# Testing SavingsAccount interest feature
+person1.add_interest()
