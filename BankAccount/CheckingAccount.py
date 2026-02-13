@@ -3,11 +3,14 @@
 
 import BankAccount
 
-class CheckingAccount:
+class CheckingAccount(BankAccount):
     _account_number = 4
     __routing_number = 985
     # Protected members.
 
+    def __init__(self, customer_name, current_balance, minimum_balance, account_number, routing_number):
+        super().__init__(customer_name, current_balance, minimum_balance)
+        # Pulls from BankAccount when object is created.
 
     def transfer_with_limit(self, amount):
         limit = 2000.0
