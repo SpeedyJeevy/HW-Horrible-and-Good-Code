@@ -26,6 +26,3 @@ class CheckingAccount(BankAccount):
         else:
             print(f"Transaction approved. ${amount} has been deducted from your account.")
             return
-
-
-
