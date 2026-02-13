@@ -25,5 +25,3 @@ class BankAccount:
         print("THANK YOU FOR CHOOSING ", self.bank_name, "\n")
 
         print("Customer Name: ", self.customer_name, "\nCurrent Balance: ", self.current_balance)
-
-
